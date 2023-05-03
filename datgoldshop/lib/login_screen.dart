@@ -142,13 +142,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> handleLogin(String username, String password) async {
     if (await validateUser(username, password)) {
-        
       // Đăng nhập thành công, chuyển hướng đến trang chính của ứng dụng
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => const MyHomePage()),
         (route) => false,
       );
+//       Future<void> navigateToMyHomePage(BuildContext context) async {
+//   Navigator.pushAndRemoveUntil(
+//     context,
+//     MaterialPageRoute(builder: (context) => const MyHomePage()),
+//     (route) => false,
+//   );
+// }
     } else {
       // Hiển thị thông báo lỗi
       showDialog(
@@ -165,6 +171,22 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       );
+//       Future<void> showMyDialog(BuildContext context) async {
+//   showDialog(
+//     context: context,
+//     builder: (context) => AlertDialog(
+//       title: const Text('Lỗi đăng nhập'),
+//       content: const Text(
+//         'Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng thử lại.'),
+//       actions: [
+//         TextButton(
+//           onPressed: () => Navigator.pop(context),
+//           child: const Text('OK'),
+//         ),
+//       ],
+//     ),
+//   );
+// }
     }
   }
 }
