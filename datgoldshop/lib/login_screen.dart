@@ -142,7 +142,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> handleLogin(String username, String password) async {
     if (await validateUser(username, password)) {
-        
       // Đăng nhập thành công, chuyển hướng đến trang chính của ứng dụng
       Navigator.pushAndRemoveUntil(
         context,
