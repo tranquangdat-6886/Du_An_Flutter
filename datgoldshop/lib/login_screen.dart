@@ -148,6 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
         MaterialPageRoute(builder: (context) => const MyHomePage()),
         (route) => false,
       );
+
     } else {
       // Hiển thị thông báo lỗi
       showDialog(
@@ -164,6 +165,22 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       );
+//       Future<void> showMyDialog(BuildContext context) async {
+//   showDialog(
+//     context: context,
+//     builder: (context) => AlertDialog(
+//       title: const Text('Lỗi đăng nhập'),
+//       content: const Text(
+//         'Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng thử lại.'),
+//       actions: [
+//         TextButton(
+//           onPressed: () => Navigator.pop(context),
+//           child: const Text('OK'),
+//         ),
+//       ],
+//     ),
+//   );
+// }
     }
   }
 }
