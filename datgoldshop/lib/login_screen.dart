@@ -148,13 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
         MaterialPageRoute(builder: (context) => const MyHomePage()),
         (route) => false,
       );
-//       Future<void> navigateToMyHomePage(BuildContext context) async {
-//   Navigator.pushAndRemoveUntil(
-//     context,
-//     MaterialPageRoute(builder: (context) => const MyHomePage()),
-//     (route) => false,
-//   );
-// }
+
     } else {
       // Hiển thị thông báo lỗi
       showDialog(
