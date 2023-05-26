@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\AttendanceController;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ApiController\AttendanceController;
+use App\Http\Controllers\ApiController\EventController;
+use App\Http\Controllers\ApiController\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +20,3 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('students', StudentController::class);
 Route::apiResource('events', EventController::class);
 Route::apiResource('attendances', AttendanceController::class);
-

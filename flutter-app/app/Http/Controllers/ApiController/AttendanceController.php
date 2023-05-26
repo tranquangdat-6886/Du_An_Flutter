@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ApiController;
 
+use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use Attribute;
 use Illuminate\Http\Request;
@@ -24,9 +25,9 @@ class AttendanceController extends Controller
     public function store(Request $request)
     {
         $attendances = new Attendance;
-        $attendances->eve_id = $request->input('eve_id');
-        $attendances->stu_id = $request->input('stu_id');
-        $attendances->createddate = $request->input('createddate');
+        $attendances->EVE_ID = $request->input('EVE_ID');
+        $attendances->STU_ID = $request->input('STU_ID');
+        $attendances->createdDate = $request->input('createdDate');
         $attendances->save();
         return response()->json($attendances);
     }
@@ -40,7 +41,7 @@ class AttendanceController extends Controller
         return response()->json($attendances);
     }
 
-  
+
 
     /**
      * Update the specified resource in storage.
@@ -48,9 +49,9 @@ class AttendanceController extends Controller
     public function update(Request $request, string $id)
     {
         $attendances = Attendance::find($id);
-        $attendances->eve_id = $request->input('eve_id');
-        $attendances->stu_id = $request->input('stu_id');
-        $attendances->createddate = $request->input('createddate');
+        $attendances->EVE_ID = $request->input('EVE_ID');
+        $attendances->STU_ID = $request->input('STU_ID');
+        $attendances->createdDate = $request->input('createdDate');
         $attendances->save();
         return response()->json($attendances);
     }

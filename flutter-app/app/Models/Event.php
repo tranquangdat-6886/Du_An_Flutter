@@ -9,6 +9,6 @@ class Event extends Model
 {
     use HasFactory;
     protected $table = 'events';
-    protected $primaryKey = 'eve_id';
+    protected $primaryKey = 'EVE_ID';
     public $timestamps = false;
 }

@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +12,32 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/events/edit/{id}', 'EventController@editEvent');
+Route::get('/users/edituser/{userId}', 'UserController@editUser');
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+Route::middleware(['auth', 'admin:1'])->group(function () {
+ Route::resource('/users', 'UserController');
+        
+    });
+  
+    Route::middleware(['auth', 'staff:1,2'])->group(function () {
+        Route::resource('/dashboard', 'AdminController');
+        Route::resource('/events', 'EventController');
+        Route::resource('/attendances', 'AttendanceController');
+      
+    });
 
-Route::view('/', 'welcome');
-Route::view('/student', 'layouts.students.list');
+    Route::middleware(['auth', 'checker:1,3'])->group(function () {
+        Route::resource('/attendances', 'AttendanceController');
+    });
+});
 
-Route::resource('/student', StudentController::class);
+Auth::routes();
+
+Route::get('/login', 'LoginController@showLoginForm')->name('users.login');
+Route::get('/', 'LoginController@showLoginForm')->name('users.login');
+Route::post('/login', 'LoginController@login')->name('login');
+Route::post('/logout', 'LoginController@logout')->name('logout');
+
+// Route::get('/login', 'LoginController@showLoginForm')->name('users.login');
+// Route::get('/', 'LoginController@showLoginForm')->name('users.login');
