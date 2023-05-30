@@ -4,6 +4,7 @@ import 'package:datgoldshop/home_screen.dart';
 import 'package:datgoldshop/share_preferences_util.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:bcrypt/bcrypt.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -127,12 +128,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<bool> validateUser(String username, String password) async {
     final url =
-        Uri.parse('http://644dc47f4e86e9a4d8eb4fdc.mockapi.io/accounts');
+        Uri.parse('https://attendance.caodangsaigon.edu.vn/api/users');
     final response = await http.get(url);
     if (response.statusCode == 200) {
       final List<dynamic> data = jsonDecode(response.body);
       for (final user in data) {
-        if (user['username'] == username && user['password'] == password) {
+        if (user['username'] == username && BCrypt.checkpw(password, user['password'])) {
           return true;
         }
       }
@@ -142,13 +143,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> handleLogin(String username, String password) async {
     if (await validateUser(username, password)) {
+        
       // Đăng nhập thành công, chuyển hướng đến trang chính của ứng dụng
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => const MyHomePage()),
         (route) => false,
       );
-
     } else {
       // Hiển thị thông báo lỗi
       showDialog(
@@ -165,22 +166,6 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       );
-//       Future<void> showMyDialog(BuildContext context) async {
-//   showDialog(
-//     context: context,
-//     builder: (context) => AlertDialog(
-//       title: const Text('Lỗi đăng nhập'),
-//       content: const Text(
-//         'Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng thử lại.'),
-//       actions: [
-//         TextButton(
-//           onPressed: () => Navigator.pop(context),
-//           child: const Text('OK'),
-//         ),
-//       ],
-//     ),
-//   );
-// }
     }
   }
 }

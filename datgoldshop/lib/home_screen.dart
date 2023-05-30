@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:datgoldshop/quetma.dart';
 import 'package:http/http.dart' as http;
-import 'package:datgoldshop/quetma.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -23,7 +22,7 @@ class HomePageState extends State<MyHomePage> {
 
   Future<void> fetchData() async {
     final response = await http
-        .get(Uri.parse('https://644f5b52b61a9f0c4d20f978.mockapi.io/events'));
+        .get(Uri.parse('https://attendance.caodangsaigon.edu.vn/api/events'));
 
     if (response.statusCode == 200) {
       setState(() {
@@ -54,21 +53,6 @@ class HomePageState extends State<MyHomePage> {
             color: Colors.white,
           ),
         ),
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.add_circle_outline),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => const QuetMa()),
-              // );
-            },
-            icon: const Icon(Icons.crop_free_outlined),
-          ),
-        ],
       ),
       body: Column(
         children: [
@@ -80,7 +64,8 @@ class HomePageState extends State<MyHomePage> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) =>  QuetMa(data[index],index)),
+                      MaterialPageRoute(
+                          builder: (context) => QuetMa(data[index], index)),
                     );
                   },
                   child: Card(
@@ -91,7 +76,7 @@ class HomePageState extends State<MyHomePage> {
                       side: const BorderSide(color: Color(0xff761d1f)),
                     ),
                     child: ListTile(
-                      title: Text(data[index]['eventName']),
+                      title: Text(data[index]['name']),
                       subtitle: Text(data[index]['eventDate']),
                     ),
                   ),
