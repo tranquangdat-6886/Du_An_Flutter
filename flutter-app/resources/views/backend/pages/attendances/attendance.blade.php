@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Attendance</h1>
+                    <h1>Sự Kiện {{ $event->name }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -46,8 +46,39 @@
                         </div>
 
                         <div class="card-body ">
-                            <textarea class="form-control" rows="8" id="txtAddress" name="note" maxlength="250"
-                                placeholder="Notes for the event"></textarea>
+                            <div class="table-responsive ">
+                                <table class="table table-bordered table-hover text-center " id="myTable">
+                                    <thead>
+                                        <tr>
+                                            <th>NO.</th>
+                                            <th>Student Code</th>
+                                            <th>LastName</th>
+                                            <th>FirstName</th>
+                                            <th>Major Code</th>
+                                            <th>Class Code</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $count = 1; ?>
+                                        {{-- @if ($attendance !== null && is_array($attendance)) --}}
+                                        @foreach ($attendance as $attendance)
+                                            <tr>
+                                                <td><?php echo $count++; ?></td>
+                                                <td>{{ $attendance->student->code }}</td>
+                                                <td>{{ $attendance->student->lastName }}</td>
+                                                <td>{{ $attendance->student->firstName }}</td>
+                                                <td>{{ $attendance->student->majorCode }}</td>
+                                                <td>{{ $attendance->student->classCode }}</td>
+
+                                            </tr>
+                                        @endforeach
+                                        {{-- @endif --}}
+                                    </tbody>
+
+                                </table>
+
+                            </div>
 
                         </div>
                         {{-- <div class="modal-footer">
@@ -69,9 +100,5 @@
             {{-- Kết thúc modal edit event --}}
         </div>
 </div>
-
-
 </section>
-
-{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script> --}}
 @endsection

@@ -2,7 +2,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4 ">
       <!-- Brand Logo -->
       <a href="../../index3.html" class="brand-link bg-success">
-          <img src="{{ url('public/backend/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
+          <img src="{{ url('backend/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
               class="brand-image img-circle elevation-3" style="opacity: .8">
           <span class="brand-text font-weight-light">Admin-CDSG</span>
       </a>
@@ -45,17 +45,25 @@
                           </p>
                       </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="{{ route('commands.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-comment-alt"></i>
+                        <p>
+                            Command
+
+                        </p>
+                    </a>
+                </li>
 
 
-
-                  <li class="nav-header">STUDENTS</li>
+                  {{-- <li class="nav-header">STUDENTS</li>
 
                   <li class="nav-item">
                       <a href="{{ route('attendances.index') }}" class="nav-link">
                           <i class="nav-icon far fa-circle text-warning"></i>
                           <p>Attendances</p>
                       </a>
-                  </li>
+                  </li> --}}
 
               </ul>
           </nav>

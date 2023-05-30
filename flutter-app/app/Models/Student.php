@@ -9,6 +9,9 @@ class Student extends Model
 {
     use HasFactory;
     protected $table = 'students';
-    protected $primaryKey = 'stu_id';
+    protected $primaryKey = 'STU_ID';
     public $timestamps = false;
+    public function attendance(){
+        return $this->hasMany(Attendance::class,'STU_ID','STU_ID');
+    }
 }

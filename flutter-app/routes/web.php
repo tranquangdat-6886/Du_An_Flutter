@@ -12,19 +12,23 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/events/edit/{id}', 'EventController@editEvent');
-Route::get('/users/edituser/{userId}', 'UserController@editUser');
+
+
+Route::get('/attendances/eveatendance/{eveatendance}','AttendanceController@eveatendance')->name('attendances.eveatendance');
 Route::middleware(['auth'])->prefix('admin')->group(function () {
 Route::middleware(['auth', 'admin:1'])->group(function () {
  Route::resource('/users', 'UserController');
-        
+ Route::get('/commands','CommandController@index')->name('commands.index');
+ Route::post('/commands','CommandController@run');
+      
     });
   
     Route::middleware(['auth', 'staff:1,2'])->group(function () {
         Route::resource('/dashboard', 'AdminController');
         Route::resource('/events', 'EventController');
         Route::resource('/attendances', 'AttendanceController');
-      
+        Route::get('/events/edit/{id}', 'EventController@editEvent');
+        Route::get('/users/edituser/{userId}', 'UserController@editUser');
     });
 
     Route::middleware(['auth', 'checker:1,3'])->group(function () {

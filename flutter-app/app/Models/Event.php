@@ -11,4 +11,8 @@ class Event extends Model
     protected $table = 'events';
     protected $primaryKey = 'EVE_ID';
     public $timestamps = false;
+
+    public function attendance(){
+        return $this->hasMany(Attendance::class,'EVE_ID','EVE_ID');
+    }
 }

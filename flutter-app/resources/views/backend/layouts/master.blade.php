@@ -3,6 +3,7 @@
   <head>
     @include('backend.layouts.head')
     <title>@yield('title')</title>
+    @yield('header')
   </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -19,5 +20,6 @@
 </div>
 
 @include('backend.layouts.script')
+@yield('js')
 </body>
 </html>

@@ -39,7 +39,8 @@
                                 <div class="col-lg-4 col-6">
 
                                     <button type="button" id="btnAdd" data-toggle="modal" data-target="#addevent"
-                                        class="btn btn-success float-lg-right"><i class="fas fa-plus"></i> Add New</button>
+                                        class="btn btn-success float-lg-right"><i class="fas fa-plus"></i> Add
+                                        New</button>
                                 </div>
                             </div>
 
@@ -159,19 +160,24 @@
                                                 <td>Trần Thanh Đàn </td>
                                                 <td>
                                                     <span class="d-lg-flex">
-                                                      @if(isset($event->EVE_ID))
-                                                        <button type="button" data-toggle="modal"
-                                                            data-target="#editevent" data-event-id="{{ $event->EVE_ID }}"
-                                                            class="btn btn-success float-lg-right buttoneditevent"><i
-                                                                class="fas fa-edit"></i> Edit</button>
-                                                     @endif
-                                                        <form action="{{route('events.destroy',['event'=>$event->EVE_ID])}}" method="POST">
+                                                        @if (isset($event->EVE_ID))
+                                                            <button type="button" data-toggle="modal"
+                                                                data-target="#editevent"
+                                                                data-event-id="{{ $event->EVE_ID }}"
+                                                                class="btn btn-success float-lg-right buttoneditevent"><i
+                                                                    class="fas fa-edit"></i> Edit</button>
+                                                        @endif
+                                                        <form
+                                                            action="{{ route('events.destroy', ['event' => $event->EVE_ID]) }}"
+                                                            method="POST">
                                                             @method('DELETE')
                                                             @csrf
                                                             <input type="submit"
                                                                 class="text-white fw-bold btn btn-danger"
                                                                 value="Delete">
                                                         </form>
+                                                        <a href="{{ route('attendances.eveatendance', ['eveatendance' => $event->EVE_ID]) }}"
+                                                            class="btn btn-primary">Detail</a>
                                                     </span>
                                                 </td>
                                             </tr>
@@ -186,70 +192,73 @@
                             <div class="modal fade" id="editevent" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-fullscreen">
-                                  @if(isset($event->EVE_ID))
-                                    <form action="{{ route('events.update', ['event' => $event->EVE_ID]) }}" method="post">
-                                      @method('PUT')
-                                        @csrf
-                                        <div class="modal-content">
-                                            <div class="modal-header">
+                                    @if (isset($event->EVE_ID))
+                                        <form action="{{ route('events.update', ['event' => $event->EVE_ID]) }}"
+                                            method="post">
+                                            @method('PUT')
+                                            @csrf
+                                            <div class="modal-content">
+                                                <div class="modal-header">
 
-                                                <h2 class="modal-title fs-5" id="staticBackdropLabel"> <i
-                                                        class="fa fa-info me-1"></i> Edit Event</h2>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
+                                                    <h2 class="modal-title fs-5" id="staticBackdropLabel"> <i
+                                                            class="fa fa-info me-1"></i> Edit Event</h2>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
 
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-lg-6 d-none d-lg-block">
-                                                        <img src="{{ asset('backend/dist/img/envent.jpg') }}"
-                                                            alt="AdminLTE Logo" class="brand-image img-fluid "
-                                                            style="opacity: .8">
-                                                    </div>
-                                                    <div class="col-lg-6">
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-6 d-none d-lg-block">
+                                                            <img src="{{ asset('backend/dist/img/envent.jpg') }}"
+                                                                alt="AdminLTE Logo" class="brand-image img-fluid "
+                                                                style="opacity: .8">
+                                                        </div>
+                                                        <div class="col-lg-6">
 
-                                                        <div class="row">
-                                                            <div class="col-lg-12">
-                                                            
-                                                                <div class="row">
-                                                                   <div class="col-lg-6">
-                                                                    <label for="">Event Name: </label>
-                                                                    <input type="text" class=" form-control "
-                                                                        name="name" id="nameEvent"
-                                                                        placeholder="Please Enter Event Name">
-                                                                   </div>
-                                                                    <div class="col-lg-6">
-                                                                        <label for=""> EventDate: </label>
-                                                                        <input type="date" class=" form-control "
-                                                                            name="eventDate"  id="eventDate">
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+
+                                                                    <div class="row">
+                                                                        <div class="col-lg-6">
+                                                                            <label for="">Event Name: </label>
+                                                                            <input type="text"
+                                                                                class=" form-control " name="name"
+                                                                                id="nameEvent"
+                                                                                placeholder="Please Enter Event Name">
+                                                                        </div>
+                                                                        <div class="col-lg-6">
+                                                                            <label for=""> EventDate: </label>
+                                                                            <input type="date"
+                                                                                class=" form-control "
+                                                                                name="eventDate" id="eventDate">
+                                                                        </div>
                                                                     </div>
+                                                                    <label for="">Note: </label>
+                                                                    <textarea class="form-control" rows="3" id="note" name="note" maxlength="250"
+                                                                        placeholder="Notes for the event"></textarea>
                                                                 </div>
-                                                                <label for="">Note: </label>
-                                                                <textarea class="form-control" rows="3" id="note" name="note" maxlength="250"
-                                                                    placeholder="Notes for the event"></textarea>
                                                             </div>
                                                         </div>
+
+
                                                     </div>
-
-
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Save</button>
-                                            </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                </div>
 
-                                        </div>
-                                    </form>
-                                 @endif
+                                            </div>
+                                        </form>
+                                    @endif
                                 </div>
-                               
+
                             </div>
-                              {{-- Bắt đầu xử lý ajax khi click vào edit --}}
-                              <script>
+                            {{-- Bắt đầu xử lý ajax khi click vào edit --}}
+                            <script>
                                 $(document).ready(function() {
                                     $('.buttoneditevent').click(function() {
                                         var eveId = $(this).data(
@@ -259,17 +268,17 @@
                                         var actionURL = "{{ route('events.update', ['event' => ':eveId']) }}";
                                         actionURL = actionURL.replace(':eveId', eveId);
                                         $('#stockinForm').attr('action', actionURL);
-        
+
                                         // $('#stockinForm').submit();
                                         $.ajax({
                                             url: '/events/edit/' +
-                                            eveId, // Đường dẫn tới phương thức xử lý yêu cầu Ajax để lấy thông tin sản phẩm
+                                                eveId, // Đường dẫn tới phương thức xử lý yêu cầu Ajax để lấy thông tin sản phẩm
                                             type: 'GET',
-        
+
                                             success: function(response) {
                                                 // Xử lý dữ liệu trả về từ controller
                                                 console.log(response);
-        
+
                                                 $('#nameEvent').val(response.eventName);
                                                 $('#eventDate').val(response.eventDate);
                                                 $('#note').val(response.note);
@@ -278,12 +287,12 @@
                                                 // Xử lý lỗi (nếu có)
                                                 console.log(error);
                                             }
-        
+
                                         });
                                     });
                                 });
                             </script>
-                              {{-- Kết thúc ajax xử lý edit --}}
+                            {{-- Kết thúc ajax xử lý edit --}}
                             {{-- Kết thúc modal edit event --}}
                         </div>
                         <!-- /.card-body -->

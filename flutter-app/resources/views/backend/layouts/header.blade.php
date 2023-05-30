@@ -32,7 +32,7 @@
                  <div class="card">
                      <div class="card-body text-center bg-success">
                          <p>
-                             <img src="{{ url('public/backend/dist/img/user2-160x160.jpg') }}" alt="AdminLTE Logo"
+                             <img src="{{ url('backend/dist/img/user2-160x160.jpg') }}" alt="AdminLTE Logo"
                                  class="brand-image img-circle elevation-3" style="opacity: .8">
                          </p>
                          @php
