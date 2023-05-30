@@ -218,7 +218,7 @@ class _MyAppState extends State<QuetMa> {
           return AlertDialog(
             title: const Text('Lỗi'),
             content:
-                const Text('Không thể xuất danh sách sự kiện ra file Excel'),
+                const Text('Không thể xuất danh sách sự kiện ra Excel'),
             actions: [
               TextButton(
                 onPressed: () {
